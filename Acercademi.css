@@ -1,0 +1,108 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #ff8d0b, #9c0101);
+  color: #ffffff;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 173, 51, 0.856);
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 10px 20px; 
+  z-index: 10;
+}
+
+header h1 {
+  font-weight: 700;
+  font-size: 1.5rem; 
+  margin: 0;
+}   
+
+nav {
+  display: flex;
+  gap: 15px; 
+  margin-left: 500px;
+  text-align: left;
+}
+
+nav a {
+  color: #ffffffce;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem; 
+  transition: color 0.3s;
+  padding: 5px 8px; 
+}
+
+nav a:hover {
+  color: rgb(255, 146, 4);
+}
+
+
+.acerca-seccion {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 120px 50px 50px 50px; 
+  gap: 50px;
+  opacity: 0; 
+  transform: translateY(50px);
+}
+
+.acerca-texto {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+}
+
+.acerca-texto h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.acerca-texto p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+
+.conocimientos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.conocimiento {
+  width: 50px;
+  height: 50px;
+  opacity: 0; 
+  transform: translateY(20px);
+}
+
+
+.acerca-imagen {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.acerca-imagen img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+
