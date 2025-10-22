@@ -1,83 +1,75 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #ccefff 0%, #ffffff 100%);
+  background: linear-gradient(to bottom, #6eb1fd 0%, #a6c8ff 100%);
+  color: #000000;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   min-height: 100vh;
-  margin: 0;
-  color: #000;
+  transition: background 1s ease, color 1s ease;
   overflow-x: hidden;
-  transition: background 2s ease-in-out, color 2s ease-in-out;
 }
 
 /* NAVBAR */
 header {
   position: fixed;
   top: 0;
-  width: 100%;
-  z-index: 10;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
   padding: 10px 20px;
   border-radius: 10px;
-  transition: background 1s;
-  flex-wrap: wrap;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+  transition: background 1s ease, color 1s ease;
 }
 
 header h1 {
-  color: #000;
-  font-weight: 700;
-  transition: color 1s;
+  font-weight: 600;
 }
 
 nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px;
 }
 
 nav a {
-  color: #000;
   text-decoration: none;
+  color: inherit;
   font-weight: 600;
-  transition: color 1s;
-  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  transition: color 0.3s;
 }
 
 nav a:hover {
-  color: #0a3fa0;
+  color: #1463f5;
 }
 
 #darkModeToggle {
-  padding: 8px 12px;
-  background: #000000;
+  padding: 6px 12px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  color: #fff;
+  background: #000000;
+  color: #ffffff;
   transition: background 0.3s, color 0.3s;
 }
 
 #darkModeToggle:hover {
-  background: #ffffff;
-}
-
-/* Modo oscuro navbar */
-.dark-mode header {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.dark-mode header h1,
-.dark-mode nav a {
-  color: #fff;
+  background: #333333;
 }
 
 /* MAIN CARD */
@@ -85,21 +77,20 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 120px;
   width: 100%;
+  padding-top: 160px; /* altura del navbar + margen */
 }
 
 .card {
+  max-width: 800px;
+  width: 90%;
+  padding: 50px;
+  text-align: center;
   background: rgba(255,255,255,0.9);
   border-radius: 20px;
   box-shadow: 0 15px 30px rgba(20, 99, 245, 0.2);
-  max-width: 500px;
-  width: 90%;
-  padding: 30px;
-  text-align: center;
-  position: relative;
+  transition: transform 0.3s ease, background 1s ease, color 1s ease;
   cursor: pointer;
-  transition: transform 0.3s ease;
 }
 
 .card:hover {
@@ -107,12 +98,12 @@ main {
 }
 
 .card-image img {
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   border: 4px solid #1463f5;
   object-fit: cover;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   transition: transform 0.5s ease;
 }
 
@@ -122,23 +113,23 @@ main {
 
 .card-content h2 {
   color: #1463f5;
-  font-size: 2rem;
-  margin-bottom: 10px;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
 }
 
 .card-content p {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 8px;
-  line-height: 1.5;
+  font-size: 1.2rem;
+  color: #333333;
+  margin-bottom: 12px;
+  line-height: 1.6;
 }
 
 .card-social {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .card-social a {
-  margin: 0 10px;
+  margin: 0 12px;
   text-decoration: none;
   color: #1463f5;
   font-weight: 600;
@@ -150,14 +141,29 @@ main {
   color: #0a3fa0;
 }
 
-/* Modo oscuro carta */
+/* MODO OSCURO */
 .dark-mode body {
   background: linear-gradient(to bottom, #0a0f23 0%, #1a2740 100%);
+  color: #ffffff;
+}
+
+.dark-mode header {
+  background: rgba(20,40,80,0.9);
+  color: #ffffff;
+}
+
+.dark-mode nav a {
+  color: #ffffff;
+}
+
+.dark-mode #darkModeToggle {
+  background: #ffffff;
+  color: #000000;
 }
 
 .dark-mode .card {
-  background: rgba(20, 40, 80, 0.8);
-  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+  background: rgba(20,40,80,0.8);
+  color: #ffffff;
 }
 
 .dark-mode .card-content h2,
