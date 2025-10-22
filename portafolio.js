@@ -1,35 +1,29 @@
-
 const svg = document.getElementById('triangles');
 const numTriangles = 20;
-const sunTriangles = [];
-const moonTriangles = [];
 
-const radius = 250; 
+// Tonos azul hielo / cristalinos
 for (let i = 0; i < numTriangles; i++) {
   const angle = (i / numTriangles) * Math.PI * 2;
+  const radius = 250;
   const x1 = Math.cos(angle) * radius;
   const y1 = Math.sin(angle) * radius;
   const x2 = Math.cos(angle + 0.15) * (radius + 70);
   const y2 = Math.sin(angle + 0.15) * (radius + 70);
-  const x3 = 0, y3 = 0;
-  const points = `${x1},${y1} ${x2},${y2} ${x3},${y3}`;
-  sunTriangles.push(points);
-
-
-  const moonX = Math.cos(angle) * (radius / 1.3) - 80;
-  const moonY = Math.sin(angle) * (radius / 1.3);
-  const moonX2 = Math.cos(angle + 0.1) * (radius / 2) - 60;
-  const moonY2 = Math.sin(angle + 0.1) * (radius / 2);
-  const moonPoints = `${moonX},${moonY} ${moonX2},${moonY2} 0,0`;
-  moonTriangles.push(moonPoints);
+  const points = `${x1},${y1} ${x2},${y2} 0,0`;
 
   const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
   poly.setAttribute('points', points);
-  poly.setAttribute('fill', `hsl(${i * 18}, 80%, 55%)`);
-  poly.setAttribute('stroke', 'rgba(0,0,0,0.2)');
+
+  // ❄️ Colores árticos: azul hielo con transparencia
+  const hue = 195 + (i * 6) % 20; // azules fríos
+  const lightness = 75 + (i % 5) * 3;
+  poly.setAttribute('fill', `hsla(${hue}, 60%, ${lightness}%, 0.75)`); 
+  poly.setAttribute('stroke', 'rgba(255, 255, 255, 0.3)');
   poly.setAttribute('stroke-width', '1');
   svg.appendChild(poly);
 }
+
+// Animación inicial
 anime({
   targets: 'polygon',
   scale: [0, 1],
@@ -47,26 +41,31 @@ anime({
   loop: true
 });
 
-
+// Toggle modo oscuro
 const toggle = document.getElementById('darkModeToggle');
 const body = document.body;
 
 toggle.addEventListener('click', () => {
-  const polys = document.querySelectorAll('polygon');
   const isDark = body.classList.toggle('dark-mode');
+  const polys = document.querySelectorAll('polygon');
 
   polys.forEach((poly, i) => {
     anime({
       targets: poly,
-      points: [{ value: isDark ? moonTriangles[i] : sunTriangles[i] }],
       fill: isDark
-        ? `hsl(${200 + i * 5}, 20%, 70%)`
-        : `hsl(${i * 18}, 80%, 55%)`,
-      rotate: isDark ? i * -8 : i * 18,
-      duration: 2000,
+        ? `hsla(0, 0%, ${90 - i * 1.5}%, 1)` // blanco hielo en modo oscuro
+        : `hsla(${195 + (i * 6) % 20}, 60%, ${75 + (i % 5) * 3}%, 0.75)`, // azul cristal en modo claro
+      duration: 1200,
       easing: 'easeInOutCubic',
-      delay: i * 30
+      delay: i * 25
     });
+  });
+
+  anime({
+    targets: '#geometricSun',
+    rotate: '+=360',
+    duration: 2500,
+    easing: 'easeInOutQuad'
   });
 });
 
@@ -78,32 +77,3 @@ anime({
   easing: 'easeOutExpo',
   delay: 1000
 });
-
-const pastelColors = [
-  ['#ffd7a8', '#fff5b7'],
-  ['#ffb3c1', '#d7faff'],
-  ['#d7faff', '#ffe5a3'],
-  ['#ffe5a3', '#ffc1e3']
-];
-
-let index = 0;
-function changeGradient() {
-  const nextIndex = (index + 1) % pastelColors.length;
-  anime({
-    targets: body,
-    background: [
-      `linear-gradient(120deg, ${pastelColors[index][0]}, ${pastelColors[index][1]})`,
-      `linear-gradient(120deg, ${pastelColors[nextIndex][0]}, ${pastelColors[nextIndex][1]})`
-    ],
-    duration: 10000,
-    easing: 'linear',
-    complete: () => {
-      index = nextIndex;
-      if (!body.classList.contains('dark-mode')) { 
-        changeGradient();
-      }
-    }
-  });
-}
-
-changeGradient

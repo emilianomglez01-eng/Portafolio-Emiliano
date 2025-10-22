@@ -1,34 +1,50 @@
+// Seleccionamos los elementos de la tarjeta
+const nameEl = document.getElementById("name");
+const whoEl = document.getElementById("who");
+const whatEl = document.getElementById("what");
+const whyEl = document.getElementById("why");
+const card = document.getElementById("profileCard");
 
-const acercaSection = document.querySelector('.acerca-seccion');
-const iconos = document.querySelectorAll('.conocimiento');
-
-function animateAcerca() {
-  const sectionTop = acercaSection.getBoundingClientRect().top;
-  const trigger = window.innerHeight - 100;
-
-  if (sectionTop < trigger) {
-    
-    anime({
-      targets: '.acerca-seccion',
-      opacity: [0, 1],
+// Animación inicial al cargar
+window.addEventListener("load", () => {
+  anime.timeline({ easing: 'easeOutExpo', duration: 800 })
+    .add({
+      targets: nameEl,
+      translateY: [-50, 0],
+      opacity: [0, 1]
+    })
+    .add({
+      targets: whoEl,
+      translateX: [-100, 0],
+      opacity: [0, 1]
+    })
+    .add({
+      targets: whatEl,
+      translateX: [100, 0],
+      opacity: [0, 1]
+    })
+    .add({
+      targets: whyEl,
       translateY: [50, 0],
-      duration: 1500,
-      easing: 'easeOutExpo'
+      opacity: [0, 1]
     });
+});
 
+// Interacción al pasar el mouse sobre la card
+card.addEventListener("mousemove", (e) => {
+  const rect = card.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
 
-    anime({
-      targets: '.conocimiento',
-      opacity: [0, 1],
-      translateY: [20, 0],
-      delay: anime.stagger(150),
-      duration: 1000,
-      easing: 'easeOutExpo'
-    });
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
 
+  const rotateX = ((y - centerY) / centerY) * 10;
+  const rotateY = ((x - centerX) / centerX) * 10;
 
-    window.removeEventListener('scroll', animateAcerca);
-  }
-}
+  card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+});
 
-window.addEventListener('load', animateAcerca);
+card.addEventListener("mouseleave", () => {
+  card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+});

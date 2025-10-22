@@ -1,108 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
 body {
   font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #ccefff 0%, #ffffff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0;
-  padding: 0;
-  background: linear-gradient(to bottom, #ff8d0b, #9c0101);
-  color: #ffffff;
+  color: #000;
+  overflow-x: hidden;
+  transition: background 2s ease-in-out, color 2s ease-in-out;
 }
 
+/* NAVBAR */
 header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(255, 173, 51, 0.856);
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  padding: 10px 20px; 
   z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: background 1s;
+  flex-wrap: wrap;
 }
 
 header h1 {
+  color: #000;
   font-weight: 700;
-  font-size: 1.5rem; 
-  margin: 0;
-}   
+  transition: color 1s;
+}
 
 nav {
-  display: flex;
-  gap: 15px; 
-  margin-left: 500px;
-  text-align: left;
-}
-
-nav a {
-  color: #ffffffce;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem; 
-  transition: color 0.3s;
-  padding: 5px 8px; 
-}
-
-nav a:hover {
-  color: rgb(255, 146, 4);
-}
-
-
-.acerca-seccion {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  padding: 120px 50px 50px 50px; 
-  gap: 50px;
-  opacity: 0; 
-  transform: translateY(50px);
-}
-
-.acerca-texto {
-  flex: 1;
-  min-width: 300px;
-  max-width: 500px;
-}
-
-.acerca-texto h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
-
-.acerca-texto p {
-  font-size: 1.2rem;
-  line-height: 1.5;
-  margin-bottom: 30px;
-}
-
-
-.conocimientos {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
 }
 
-.conocimiento {
-  width: 50px;
-  height: 50px;
-  opacity: 0; 
-  transform: translateY(20px);
+nav a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 1s;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
+nav a:hover {
+  color: #0a3fa0;
+}
 
-.acerca-imagen {
-  flex: 1;
-  min-width: 300px;
-  max-width: 500px;
+#darkModeToggle {
+  padding: 8px 12px;
+  background: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #fff;
+  transition: background 0.3s, color 0.3s;
+}
+
+#darkModeToggle:hover {
+  background: #ffffff;
+}
+
+/* Modo oscuro navbar */
+.dark-mode header {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.dark-mode header h1,
+.dark-mode nav a {
+  color: #fff;
+}
+
+/* MAIN CARD */
+main {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.acerca-imagen img {
+  padding-top: 120px;
   width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
+.card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(20, 99, 245, 0.2);
+  max-width: 500px;
+  width: 90%;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
 
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #1463f5;
+  object-fit: cover;
+  margin-bottom: 20px;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-image img {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.card-content h2 {
+  color: #1463f5;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.card-content p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.card-social {
+  margin-top: 20px;
+}
+
+.card-social a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #1463f5;
+  font-weight: 600;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.card-social a:hover {
+  transform: scale(1.2);
+  color: #0a3fa0;
+}
+
+/* Modo oscuro carta */
+.dark-mode body {
+  background: linear-gradient(to bottom, #0a0f23 0%, #1a2740 100%);
+}
+
+.dark-mode .card {
+  background: rgba(20, 40, 80, 0.8);
+  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .card-content h2,
+.dark-mode .card-content p,
+.dark-mode .card-social a {
+  color: #ffffff;
+}

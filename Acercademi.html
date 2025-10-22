@@ -3,48 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acerca de mí</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Acerca de mí - Emiliano González</title>
   <link rel="stylesheet" href="Acercademi.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
 
+  <!-- NAVBAR idéntico al index -->
   <header>
-    <h1>Acerca de Mí</h1>
+    <h1>Desarrollador Front End Jr</h1>
     <nav>
       <a href="index.html">Inicio</a>
-      <a href="acerca.html">Curriculum Vitae</a>
       <a href="Blog.html">Blog</a>
+      <a href="#">Curriculum Vitae</a>
     </nav>
+    <button id="darkModeToggle">🌙 Modo Oscuro</button>
   </header>
 
-  
+  <!-- CONTENIDO PRINCIPAL -->
   <main>
-    <section class="acerca-seccion">
-      <div class="acerca-texto">
-        <h2>Hola, soy Emiliano</h2>
-        <p>
-          Me apasiona el diseño y me encanta explotar mi creatividad con los conocimientos que tengo, no tengo miedo al avance y a la comunicacion con tal de aprender cada dia mas
-          y mas, reconozco las fortalezas de las personas por ende puedo adaptarme a cualquier equipo de trabajo y ritmo necesario, eh estado toda mi vida cerca del arte y el diseño
-            por lo que me siento comodo y feliz trabajando en ello. puedo leer a la gente muy bien y eso causa que cada trabajo este hecho con pasion y dedicacion hacia las personas
-            Las primeras impresiones lo son todo, ya sea como imagen personal o del lugar donde me encuentro y es por eso que afino mi habilidad por la interaccion con mi trabajo diario
-        </p>
-        <div class="conocimientos">
-          <img src="imagenes/JAVASCRIPT ADOBE.png" width="500" height="200" alt="JavaScript" class="conocimiento">
-          <img src="imagenes/CSS Adobe.png" alt="CSS" class="conocimiento">
-          <img src="imagenes/html adobe.png" alt="html" class="conocimiento">
-          <img src="imagenes/Figma-logo.jpg" alt="Figma" class="conocimiento">
-
-           </div>
+    <div class="card" id="profileCard">
+      <div class="card-image">
+        <img src="/imagenes/Retrato-dibujo.jpg" alt="Emiliano González">
       </div>
-
-      <div class="acerca-imagen">
-        <img src="imagenes/Retrato-dibujo.jpg" alt="Foto de Emiliano">
+      <div class="card-content">
+        <h2 id="name">Emiliano González</h2>
+        <p id="who">Soy un Desarrollador Front-End Jr.</p>
+        <p id="what">Me dedico a crear experiencias interactivas y páginas web modernas.</p>
+        <p id="why">Me apasiona combinar diseño y código para lograr proyectos atractivos y funcionales.</p>
       </div>
-    </section>
+      <div class="card-social">
+        <a href="#" target="_blank">LinkedIn</a>
+        <a href="#" target="_blank">GitHub</a>
+        <a href="#" target="_blank">Twitter</a>
+      </div>
+    </div>
   </main>
 
+  <!-- JAVASCRIPT -->
   <script src="Acercademi.js"></script>
+  <script>
+    // Modo oscuro para navbar y fondo
+    const toggle = document.getElementById('darkModeToggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
 </body>
 </html>

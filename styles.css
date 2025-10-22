@@ -1,13 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins");
 
 :root {
-  --yellow-light: #f3f8c0;
-  --orange-light: #16405c;
-  --red-light: #000000;
-  --gold: #ffffff;
-  --orange-dark: #000000;
-  --moon-gray: #9ca3af;
-  --moon-blue: #a0b9ff;
+  --light-bg: #6cb1ff;
+  --dark-bg: #000000;
+  --deep-purple: #8cd8f0;
+  --white-glow: #ffffff;
+  --moon-gray: #dcdcdc;
 }
 
 * {
@@ -18,16 +16,19 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, var(--yellow-light), var(--orange-light));
+  background: var(--light-bg);
   height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: background 1s, color 1s;
+
+  /* transición suave */
+  transition: background 2s ease-in-out, color 2s ease-in-out;
   color: #000;
 }
 
+/* NAVBAR */
 header {
   position: fixed;
   top: 0;
@@ -36,21 +37,21 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
   padding: 10px 20px;
   border-radius: 10px;
   transition: background 1s;
 }
 
 header h1 {
-  color: var(--orange-dark);
+  color: #000;
   font-weight: 700;
   transition: color 1s;
 }
 
 nav a {
-  color: var(--red-light);
+  color: #000;
   text-decoration: none;
   margin: 0 10px;
   font-weight: 600;
@@ -58,23 +59,24 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--gold);
+  color: #000000;
 }
 
 #darkModeToggle {
   padding: 8px 12px;
-  background: var(--gold);
+  background: #000000;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  color: #000;
+  color: #fff;
   transition: background 0.3s, color 0.3s;
 }
 #darkModeToggle:hover {
-  background: var(--orange-dark);
+  background: #ffffff;
 }
 
+/* CONTENIDO */
 main {
   flex: 1;
   display: flex;
@@ -99,15 +101,15 @@ svg {
   height: 700px;
   z-index: 3;
 }
+
 polygon {
   transition: fill 0.6s ease;
 }
 
-
 .lotus-text {
   position: absolute;
   top: 52%;
-  left: 64%;
+  left: 61%;
   transform: translate(-50%, -40%);
   text-align: center;
   z-index: 5;
@@ -127,6 +129,11 @@ polygon {
   }
 }
 
+.lotus-text h2, 
+.lotus-text p {
+  animation: floatText 4s ease-in-out infinite;
+}
+
 @keyframes floatText {
   0%, 100% {
     transform: translate(-50%, -50%) translateY(0);
@@ -136,42 +143,41 @@ polygon {
   }
 }
 
-.lotus-text h2, 
-.lotus-text p {
-  animation: floatText 4s ease-in-out infinite;
-}
-
 .lotus-text h2 {
   font-size: 2.8rem;
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 10px rgba(0,0,0,0.3);
+  text-shadow: 0 0 15px rgba(100, 80, 180, 0.4);
   transition: color 1s;
+  color: #000;
 }
 
 .lotus-text p {
   font-size: 1.5rem;
-  text-shadow: 0 0 8px rgba(0,0,0,0.3);
+  color: #222;
+  text-shadow: 0 0 8px rgba(0,0,0,0.1);
   transition: color 1s;
 }
 
+/* FOOTER */
 footer {
   position: absolute;
   bottom: 10px;
-  color: var(--orange-dark);
+  color: #000;
   text-align: center;
   width: 100%;
   z-index: 10;
   transition: color 1s;
 }
 
-
+/* 🌙 MODO OSCURO */
 .dark-mode {
-  background: radial-gradient(circle, #1a1b26, #000);
+  background: var(--dark-bg);
   color: #fff;
+  transition: background 2s ease-in-out, color 2s ease-in-out;
 }
 
 .dark-mode header {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .dark-mode header h1,
@@ -192,13 +198,57 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
   overflow: hidden;
+  z-index: -1;
+  background: linear-gradient(to bottom, #1463f5 0%, #94e1ff 100%);
+  transition: background 2s ease-in-out;
 }
 
-#rippleCanvas {
+/* Capa overlay para modo oscuro */
+.water-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  display: block;
-  filter: blur(1.5px) brightness(1.2);
+  background: linear-gradient(to bottom, #0a0f23 0%, #1a2740 100%);
+  opacity: 0;               /* invisible por defecto */
+  transition: opacity 2s ease-in-out; /* transición suave */
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Nubes animadas */
+.water-background::after {
+  content: "";
+  position: absolute;
+  top: 5%;
+  left: -200px;
+  width: 300%;
+  height: 50%;
+  background: 
+    radial-gradient(circle at 20% 40%, rgba(255,255,255,0.9) 0%, transparent 60%) 0 0 / 300px 120px repeat-x,
+    radial-gradient(circle at 60% 60%, rgba(255,255,255,0.8) 0%, transparent 70%) 0 0 / 400px 160px repeat-x,
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.7) 0%, transparent 60%) 0 0 / 500px 200px repeat-x;
+  animation: moveClouds 60s linear infinite;
+  opacity: 0.7;
+  pointer-events: none;
+  transition: opacity 2s ease-in-out, filter 2s ease-in-out, background 2s ease-in-out;
+  z-index: 2;
+}
+
+/* Activar overlay en modo oscuro */
+body.dark-mode .water-background::before {
+  opacity: 1;
+}
+
+/* Ajustes para nubes en modo oscuro */
+body.dark-mode .water-background::after {
+  background: 
+    radial-gradient(circle at 30% 50%, rgba(255,255,255,0.3) 0%, transparent 60%) 0 0 / 300px 120px repeat-x,
+    radial-gradient(circle at 70% 40%, rgba(255,255,255,0.2) 0%, transparent 70%) 0 0 / 400px 160px repeat-x;
+  animation: moveCloudsNight 25s linear infinite;
+  opacity: 0.4;
+  filter: brightness(0.6);
 }
